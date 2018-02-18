@@ -13,6 +13,8 @@ class Event(models.Model):
     fk_adress=models.ForeignKey('Adress', on_delete=models.CASCADE)
     fk_user=models.ForeignKey(User, on_delete=models.CASCADE)
     categories=models.ManyToManyField(Category)
+    image=models.ImageField(upload_to = 'event_imgs', default = 'event_imgs/default.jpg')
+
 
 class Canton(models.Model):
     name=models.CharField(max_length=100)
