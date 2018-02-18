@@ -1,6 +1,9 @@
 
 # Created by https://www.gitignore.io/api/django,python
 
+#DB
+db_settings_mlc.cnf
+
 ### Django ###
 *.log
 *.pot
