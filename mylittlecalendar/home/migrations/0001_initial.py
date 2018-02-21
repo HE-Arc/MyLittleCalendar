@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Adress',
+            name='address',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('npa', models.CharField(max_length=20)),
@@ -46,12 +46,12 @@ class Migration(migrations.Migration):
                 ('date_begin', models.DateField()),
                 ('date_end', models.DateField()),
                 ('categories', models.ManyToManyField(to='home.Category')),
-                ('fk_adress', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='home.Adress')),
+                ('fk_address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='home.address')),
                 ('fk_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
-            model_name='adress',
+            model_name='address',
             name='fk_canton',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='home.Canton'),
         ),
