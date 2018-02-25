@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  {% for event in event_list %}
+  <div class="row content">
+    <div class="col-md-4">
+        <img class="img-responsive rounded mb-3 mb-md-0" src="{{ event.image.url }}" alt="image">
+    </div>
+    <div class="col-md-8">
+      <h3>{{ event.name }}</h3>
+      <p>{{ event.description }}</p>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}
