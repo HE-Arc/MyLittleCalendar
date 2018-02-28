@@ -23,6 +23,10 @@ class Event(models.Model):
 
     def dates():
         end_date = Event.objects.all().aggregate(Max('date_end'))['date_end__max']
+
+        if end_date is None:
+            return "1900-01-01"
+
         dates = []
         start_date = date.today()
 

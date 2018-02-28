@@ -27,7 +27,6 @@ class EventListView(generic.ListView):
 
         context['date_events'] = valid_events
 
-        print(valid_events)
         return context
 
 
