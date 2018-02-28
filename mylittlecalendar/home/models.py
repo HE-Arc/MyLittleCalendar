@@ -17,7 +17,7 @@ class Event(models.Model):
     fk_address=models.ForeignKey('address', on_delete=models.CASCADE)
     fk_user=models.ForeignKey(User, on_delete=models.CASCADE)
     categories=models.ManyToManyField(Category)
-    image=models.ImageField(upload_to = 'Image/events', default = 'images/events/default.jpg')
+    image=models.ImageField(upload_to = 'images/events', default = 'images/events/default.jpg')
 
 
 
