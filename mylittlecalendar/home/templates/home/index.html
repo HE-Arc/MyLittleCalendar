@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+  {% for event in event_list %}
   <div class="row content">
     <div class="col-md-4">
       <a href="#">
@@ -15,4 +16,5 @@
       <a class="btn btn-primary" href="#">View Project</a>
     </div>
   </div>
+  {% endfor %}
 {% endblock %}

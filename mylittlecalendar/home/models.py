@@ -15,7 +15,7 @@ class Event(models.Model):
     fk_address=models.ForeignKey('address', on_delete=models.CASCADE)
     fk_user=models.ForeignKey(User, on_delete=models.CASCADE)
     categories=models.ManyToManyField(Category)
-    image=models.ImageField(upload_to = 'event_imgs', default = 'event_imgs/default.jpg')
+    image=models.ImageField(upload_to = 'Image/events', default = 'Images/events/default.jpg')
     def __str__(self):
         return self.name
 
