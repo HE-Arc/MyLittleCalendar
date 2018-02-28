@@ -9,6 +9,26 @@ from .models import Event
 class EventListView(generic.ListView):
     model = Event
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        dates = Event.dates()
+
+        events = Event.objects.all()
+
+        valid_events = {}
+        for date in dates:
+            valid_events[date]=[]
+            for event in events:
+                if event.is_date_valid(date) :
+                    valid_events[date].append(event)
+
+            if len(valid_events[date]) == 0:
+                del valid_events[date]
+
+        context['date_events'] = valid_events
+
+        return context
+
 
 class EventCreateView(generic.CreateView):
     model = Event
