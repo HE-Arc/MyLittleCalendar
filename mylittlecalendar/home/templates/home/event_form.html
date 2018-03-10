@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 
 {% block title %}Add event{% endblock %}
 
@@ -6,7 +16,8 @@
 <div class="container">
 <form action="" method="post">
   {% csrf_token %}
-    {{ form.as_p }}
+    <!--{{ form.as_p }}-->
+    {% bootstrap_form form %}
     <input type="submit" value="Save" />
 </form>
 
