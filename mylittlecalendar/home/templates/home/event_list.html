@@ -6,15 +6,28 @@
   {% for date, events in date_events.items %}
      <h1>{{ date }}</h1>
      {%  for event in events %}
-        <div class="row content">
-          <div class="col-md-4">
-              <img class="img-responsive rounded mb-3 mb-md-0" src="{{ event.image.url }}" alt="image">
+          <div class="row content">
+            <div class="col-md-4">
+                <img class="img-responsive rounded mb-3 mb-md-0" src="{{ event.image.url }}" alt="image">
+            </div>
+            <div class="col-md-8">
+              <h3>- {{ event.name }}</h3>
+              <p>{{ event.description }}</p>
+            </div>
           </div>
-          <div class="col-md-8">
-            <h3>{{ event.name }}</h3>
-            <p>{{ event.description }}</p>
-          </div>
-        </div>
     {% endfor %}
+  {% endfor %}
+{% endblock %}
+
+{% block sidenav %}
+  <h1>Filters</h1>
+  <h3>Canton</h3>
+  {% for canton in cantons %}
+    <p><input type="checkbox" name="checked_cantons[]">{{ canton }}</p>
+  {% endfor %}
+  {{ checked_cantons }}
+  <h3>Category</h3>
+  {% for category in categories %}
+    <p><input type="checkbox">{{ category }}</p>
   {% endfor %}
 {% endblock %}

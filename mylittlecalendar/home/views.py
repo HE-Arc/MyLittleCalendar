@@ -7,6 +7,8 @@ from django.views.generic.edit import FormView
 from django import forms
 
 from .models import Event
+from .models import Canton
+from .models import Category
 
 
 class EventListView(generic.ListView):
@@ -29,7 +31,8 @@ class EventListView(generic.ListView):
                 del valid_events[date]
 
         context['date_events'] = valid_events
-
+        context['cantons'] = Canton.objects.all()
+        context['categories'] = Category.objects.all()
         return context
 
 class DateInput(forms.DateInput):
