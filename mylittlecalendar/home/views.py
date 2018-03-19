@@ -3,10 +3,11 @@ from django.http import HttpResponse
 from django.views import generic, View
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
-# from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 
 from .models import Event
+from .models import Canton
+from .models import Category
 
 
 class EventListView(generic.ListView):
@@ -29,13 +30,21 @@ class EventListView(generic.ListView):
                 del valid_events[date]
 
         context['date_events'] = valid_events
-
+        context['cantons'] = Canton.objects.all()
+        context['categories'] = Category.objects.all()
         return context
 
 class DateInput(forms.DateInput):
     input_type='date'
 
+class EventCreateViewForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image']
+        widgets={'date_begin': forms.DateInput(attrs={'type':'date'})}
+
 class EventCreateView(generic.CreateView):
+    form_class = EventCreateViewForm
     model = Event
     fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image', 'fk_address']
     success_url = reverse_lazy('index')

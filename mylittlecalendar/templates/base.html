@@ -1,7 +1,7 @@
 {% load staticfiles %}
 {# Load the tag library #}
 {% load bootstrap3 %}
-
+{#% load django-bootstrap3-datetimepicker-2 %}
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -53,6 +53,7 @@
           {% block content %}{% endblock %}
         </div>
         <div class="col-sm-3 sidenav">
+          {% block sidenav %}{% endblock %}
           <div class="well">
             <p>ADS</p>
           </div>
