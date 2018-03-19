@@ -16,6 +16,6 @@ def signup(request):
             return redirect('index')
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
     #https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
