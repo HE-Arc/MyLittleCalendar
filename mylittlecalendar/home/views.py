@@ -40,9 +40,15 @@ class DateInput(forms.DateInput):
 class EventCreateViewForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image']
-        widgets={'date_begin': forms.DateInput(attrs={'type':'date'}), 'date_end': forms.DateInput(attrs={'type':'date'}) }
+        fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image', 'fk_address']
+        widgets={'date_begin': forms.DateInput(attrs={'type':'date'}), 'date_end': forms.DateInput(attrs={'type':'date'})}
 
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
+
+    def form_valid(self, form):
+        Event = form.save(commit=False)
+        Event.fk_user = self.request.user
+        Event.save()
+        return super().form_valid(form)
