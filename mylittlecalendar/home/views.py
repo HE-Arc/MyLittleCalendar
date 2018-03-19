@@ -44,7 +44,6 @@ class EventCreateViewForm(forms.ModelForm):
         widgets={'date_begin': forms.DateInput(attrs={'type':'date'})}
 
 class EventCreateView(generic.CreateView):
-    form_class = EventCreateViewForm
     model = Event
     fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image', 'fk_address']
     success_url = reverse_lazy('index')
