@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import timedelta, date, datetime
 from django.db.models import Max
-from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 
 # Create your models here.

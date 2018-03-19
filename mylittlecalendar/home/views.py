@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.views import generic, View
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
-#from bootstrap3_datetime.widgets import DateTimePicker
 from django import forms
 
 from .models import Event
@@ -42,16 +41,8 @@ class EventCreateViewForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image']
-        widgets={'date_begin': forms.DateInput(attrs={'type':'date'})}
+        widgets={'date_begin': forms.DateInput(attrs={'type':'date'}), 'date_end': forms.DateInput(attrs={'type':'date'}) }
 
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
-    # fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image']
-    # success_url = reverse_lazy('index')
-    #
-    # def get_form(self, form_class=None):
-    #     form = super(EventCreateView, self).get_form(form_class)
-    #     form.flieds['date_begin'].widget.attrs.update({'class': 'datepicker'})
-    #     return form
-    #widgets={'date_begin': forms.DateInput(attrs={'class':'datepicker'})}
