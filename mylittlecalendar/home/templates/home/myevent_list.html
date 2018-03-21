@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}My Events{% endblock %}
+
+{% block content %}
+{% for event in events %}
+  <p><input type="checkbox">{{ event.name }}----{{event.date_begin}}----{{event.date_end}}</p>
+{% endfor %}
+{% endblock %}

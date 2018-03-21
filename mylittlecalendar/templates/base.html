@@ -2,9 +2,7 @@
 {# Load the tag library #}
 {% load bootstrap3 %}
 
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
@@ -13,7 +11,10 @@
 <html lang="en">
   <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {# Load CSS and JavaScript #}
+    {% bootstrap_javascript %}
+    {% bootstrap_css %}
+
     <link href="{% static 'css/style.css' %}" rel="stylesheet" media="screen">
   </head>
   <body>
@@ -31,7 +32,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="#">My projects</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'my-events'%}">My events</a></li>
+            {% endif %}
             <li><a href="#">About</a></li>
 
           </ul>

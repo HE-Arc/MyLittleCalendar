@@ -34,6 +34,17 @@ class EventListView(generic.ListView):
         context['categories'] = Category.objects.all()
         return context
 
+class MyeventListView(generic.ListView):
+    model = Event
+    template_name = "home/myevent_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['events'] = Event.objects.filter(fk_user=self.request.user)
+        return context
+
+
+
 class DateInput(forms.DateInput):
     input_type='date'
 
@@ -46,6 +57,7 @@ class EventCreateViewForm(forms.ModelForm):
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
+    success_url=reverse_lazy('index')
 
     def form_valid(self, form):
         Event = form.save(commit=False)
