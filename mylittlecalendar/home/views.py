@@ -40,7 +40,7 @@ class DateInput(forms.DateInput):
 class EventCreateViewForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image', 'fk_address']
+        fields = ['name', 'description','fk_address', 'date_begin', 'date_end', 'categories', 'image']
         widgets={'date_begin': forms.DateInput(attrs={'type':'date'}), 'date_end': forms.DateInput(attrs={'type':'date'})}
 
 class EventCreateView(generic.CreateView):

@@ -14,11 +14,11 @@ class Category(models.Model):
 class Event(models.Model):
     name=models.CharField(max_length=100)
     description=models.CharField(max_length=500)
-    date_begin=models.DateField()
-    date_end=models.DateField()
-    fk_address=models.ForeignKey('address', on_delete=models.CASCADE)
+    date_begin=models.DateField(verbose_name= 'Start date')
+    date_end=models.DateField(verbose_name= 'End date')
+    fk_address=models.ForeignKey('address', on_delete=models.CASCADE,verbose_name= 'Address')
     fk_user=models.ForeignKey(User, on_delete=models.CASCADE)
-    categories=models.ManyToManyField(Category)
+    categories=models.ManyToManyField(Category, verbose_name= 'Category')
     image=models.ImageField(upload_to = 'images/events', default = 'images/events/default.jpg')
 
 
