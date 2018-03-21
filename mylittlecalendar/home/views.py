@@ -46,6 +46,7 @@ class EventCreateViewForm(forms.ModelForm):
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
+    success_url = reverse_lazy('index')
 
     def form_valid(self, form):
         Event = form.save(commit=False)
