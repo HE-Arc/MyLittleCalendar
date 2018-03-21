@@ -51,13 +51,17 @@ class DateInput(forms.DateInput):
 class EventCreateViewForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'description', 'date_begin', 'date_end', 'categories', 'image', 'fk_address']
+        fields = ['name', 'description','fk_address', 'date_begin', 'date_end', 'categories', 'image']
         widgets={'date_begin': forms.DateInput(attrs={'type':'date'}), 'date_end': forms.DateInput(attrs={'type':'date'})}
 
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
+<<<<<<< HEAD
     success_url=reverse_lazy('index')
+=======
+    success_url = reverse_lazy('index')
+>>>>>>> 5409c526aa4b6d2a627f8f20a26459a2951b7529
 
     def form_valid(self, form):
         Event = form.save(commit=False)
