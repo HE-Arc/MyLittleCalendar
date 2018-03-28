@@ -57,14 +57,20 @@ class EventCreateViewForm(forms.ModelForm):
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
-<<<<<<< HEAD
-    success_url=reverse_lazy('index')
-=======
-    success_url = reverse_lazy('index')
->>>>>>> 5409c526aa4b6d2a627f8f20a26459a2951b7529
+    success_url = reverse_lazy('my-events')
 
     def form_valid(self, form):
         Event = form.save(commit=False)
         Event.fk_user = self.request.user
         Event.save()
         return super().form_valid(form)
+
+class EventUpdateView(generic.UpdateView):
+    model = Event
+    form_class = EventCreateViewForm
+    success_url = reverse_lazy('my-events')
+
+
+class EventDeleteView(generic.DeleteView):
+    model = Event
+    success_url = reverse_lazy('my-events')
