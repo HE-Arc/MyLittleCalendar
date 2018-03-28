@@ -3,7 +3,46 @@
 {% block title %}My Events{% endblock %}
 
 {% block content %}
-{% for event in events %}
-  <p><input type="checkbox">{{ event.name }}----{{event.date_begin}}----{{event.date_end}}</p>
-{% endfor %}
-{% endblock %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'event-new' %}">
+            <button type="button" class="btn btn-success">Add</button>
+        </a>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover ">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Starting date
+                    </th>
+                    <th>
+                        End date
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.date_begin|date:"d.m.Y" }}</td>
+                        <td>{{ event.date_end|date:"d.m.Y" }}</td>
+                        <td>{{ event.description }}</td>
+                        <td>
+                            <a href="{% url 'event-edit' event.pk %}">
+                                <button type="button" class="btn btn-primary">Edit</button>
+                            </a>
+                            <a href="{% url 'event-delete' event.pk %}">
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {%endif%}
+    {% endblock %}

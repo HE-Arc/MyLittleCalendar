@@ -58,13 +58,14 @@ class EventCreateViewForm(forms.ModelForm):
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('my-events')
 
     def form_valid(self, form):
         Event = form.save(commit=False)
         Event.fk_user = self.request.user
         Event.save()
         return super().form_valid(form)
+
 
 class EventFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
@@ -79,3 +80,13 @@ def search(request):
     event_list = Event.objects.all()
     event_filter = EventFilter(request.GET, queryset=event_list)
     return render(request, 'home/event_search.html', {'filter': event_filter})
+
+class EventUpdateView(generic.UpdateView):
+    model = Event
+    form_class = EventCreateViewForm
+    success_url = reverse_lazy('my-events')
+
+
+class EventDeleteView(generic.DeleteView):
+    model = Event
+    success_url = reverse_lazy('my-events')

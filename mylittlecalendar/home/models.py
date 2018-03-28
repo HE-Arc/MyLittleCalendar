@@ -39,7 +39,7 @@ class Event(models.Model):
         return self.name
 
     def is_date_valid(self, date_test):
-        return date_test <= self.date_end.strftime("%d.%m.%Y") and date_test >= self.date_begin.strftime("%d.%m.%Y")
+        return datetime.strptime(date_test, '%d.%m.%Y').date() <= self.date_end and datetime.strptime(date_test, '%d.%m.%Y').date() >= self.date_begin
 
 
 class Canton(models.Model):
