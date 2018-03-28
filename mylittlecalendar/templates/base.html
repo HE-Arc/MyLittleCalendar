@@ -17,9 +17,9 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet" media="screen">
   </head>
-  <body>
+  <body style="background-color: #ddd" >
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse col-sm-6 col-sm-offset-3">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,14 +27,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Logo</a>
+          <a class="navbar-brand" href="{% url 'index'%}"><span class="glyphicon glyphicon-calendar"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/">Home</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'my-events'%}">My events</a></li>
             {% endif %}
+            <li><a href="{% url 'search'%}">Search</a></li>
             <li><a href="#">About</a></li>
 
           </ul>
@@ -53,17 +54,14 @@
 
     <div class="container-fluid text-center">
       <div class="row content">
-        <div class="col-sm-9 text-left">
+        <div class="col-sm-6 col-sm-offset-3 text-left" style="background-color: white">
           {% block content %}{% endblock %}
-        </div>
-        <div class="col-sm-3 sidenav">
-          {% block sidenav %}{% endblock %}
         </div>
       </div>
     </div>
 
-    <footer class="container-fluid text-center float-none">
-      <p>Footer Text</p>
+    <footer class="container-fluid text-center float-none col-sm-6 col-sm-offset-3">
+      <p><span class="glyphicon glyphicon-copyright-mark"></span> HE-Arc Ingénierie - 2018</p>
     </footer>
 
   </body>

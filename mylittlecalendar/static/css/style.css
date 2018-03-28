@@ -34,6 +34,10 @@ html, body {
   height: 100%;
 }
 
+body{
+  background-color: #f0f;
+}
+
 #wrap {
   min-height: 100%;
 }
@@ -49,4 +53,8 @@ html, body {
   height: 150px;
   clear:both;
   padding-top:20px;
+}
+
+.btn-primary{
+  margin-bottom: 50px;
 }

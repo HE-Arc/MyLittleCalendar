@@ -4,10 +4,13 @@ from django.views import generic, View
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django import forms
+import django_filters
+#from .filters import EventFilter
 
 from .models import Event
 from .models import Canton
 from .models import Category
+from .models import Address
 
 
 class EventListView(generic.ListView):
@@ -43,8 +46,6 @@ class MyeventListView(generic.ListView):
         context['events'] = Event.objects.filter(fk_user=self.request.user)
         return context
 
-
-
 class DateInput(forms.DateInput):
     input_type='date'
 
@@ -57,14 +58,24 @@ class EventCreateViewForm(forms.ModelForm):
 class EventCreateView(generic.CreateView):
     form_class = EventCreateViewForm
     model = Event
-<<<<<<< HEAD
-    success_url=reverse_lazy('index')
-=======
     success_url = reverse_lazy('index')
->>>>>>> 5409c526aa4b6d2a627f8f20a26459a2951b7529
 
     def form_valid(self, form):
         Event = form.save(commit=False)
         Event.fk_user = self.request.user
         Event.save()
         return super().form_valid(form)
+
+class EventFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='icontains')
+    categories = django_filters.ModelMultipleChoiceFilter(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
+    cantons = django_filters.ModelMultipleChoiceFilter(queryset=Canton.objects.all(), widget=forms.CheckboxSelectMultiple)
+    class Meta:
+        model = Event
+        fields = ['name', 'date_begin', 'date_end', 'categories', 'cantons']
+        widgets={'date_begin': django_filters.DateFromToRangeFilter(attrs={'type':'date'}), 'date_end': django_filters.DateFromToRangeFilter(attrs={'type':'date'})}
+
+def search(request):
+    event_list = Event.objects.all()
+    event_filter = EventFilter(request.GET, queryset=event_list)
+    return render(request, 'home/event_search.html', {'filter': event_filter})
