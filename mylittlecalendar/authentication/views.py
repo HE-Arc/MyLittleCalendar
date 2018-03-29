@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-# Create your views here.
+# View for the signe up
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

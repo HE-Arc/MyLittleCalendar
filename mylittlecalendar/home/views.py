@@ -12,7 +12,7 @@ from .models import Canton
 from .models import Category
 from .models import Address
 
-
+# View for the list of events
 class EventListView(generic.ListView):
     model = Event
 
@@ -37,6 +37,7 @@ class EventListView(generic.ListView):
         context['categories'] = Category.objects.all()
         return context
 
+# View for the list of events of the authenticated user
 class MyeventListView(generic.ListView):
     model = Event
     template_name = "home/myevent_list.html"
@@ -49,6 +50,8 @@ class MyeventListView(generic.ListView):
 class DateInput(forms.DateInput):
     input_type='date'
 
+
+# View to create a new event
 class EventCreateViewForm(forms.ModelForm):
     class Meta:
         model = Event
@@ -67,6 +70,7 @@ class EventCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
+# View for the search of events
 class EventFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     categories = django_filters.ModelMultipleChoiceFilter(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
@@ -81,12 +85,14 @@ def search(request):
     event_filter = EventFilter(request.GET, queryset=event_list)
     return render(request, 'home/event_search.html', {'filter': event_filter})
 
+
+# View for updating an event
 class EventUpdateView(generic.UpdateView):
     model = Event
     form_class = EventCreateViewForm
     success_url = reverse_lazy('my-events')
 
-
+# View for deleting an event
 class EventDeleteView(generic.DeleteView):
     model = Event
     success_url = reverse_lazy('my-events')

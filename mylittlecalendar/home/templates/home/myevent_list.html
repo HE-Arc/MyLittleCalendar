@@ -3,6 +3,8 @@
 {% block title %}My Events{% endblock %}
 
 {% block content %}
+
+    <!-- Check if the user is authentificated -->
     {% if user.is_authenticated %}
         <a href="{% url 'event-new' %}">
             <button type="button" class="btn btn-success">Add</button>
@@ -26,6 +28,8 @@
                         Actions
                     </th>
                 </tr>
+
+                <!-- Show the events from the user -->
                 {% for event in events %}
                     <tr>
                         <td>{{ event.name }}</td>

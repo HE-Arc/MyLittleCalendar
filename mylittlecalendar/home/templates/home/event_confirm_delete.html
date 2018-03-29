@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="container">
-
+        <!-- Confirmation from for deleting a event -->
         <form action="" method="post">{% csrf_token %}
             <p>Are you sure you want to delete "{{ object }}"?</p>
             <input type="submit" value="Confirm"/>

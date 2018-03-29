@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
 ]
 
+# used for django debug toolbar
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [url(r'^__debug__/', include(debug_toolbar.urls)),]+urlpatterns

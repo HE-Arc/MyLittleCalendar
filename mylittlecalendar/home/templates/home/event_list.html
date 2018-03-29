@@ -15,8 +15,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
+  <!-- Looping on every date and get events at that date -->
   {% for date, events in date_events.items %}
      <h1>{{ date }}</h1>
+
+     <!-- Looping on every events that happens on a date -->
      {%  for event in events %}
           <div class="row content">
             <div class="col-md-4">

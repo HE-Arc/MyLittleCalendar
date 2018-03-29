@@ -14,11 +14,14 @@
 {% load staticfiles %}
 
 {% block content %}
+
+  <!-- Generated form to make the queries -->
   <form method="get">
     {% bootstrap_form filter.form %}
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary" id="btn-search">Search</button>
   </form>
 
+  <!-- Shoe the results of the search by default all are shown -->
    {%  for event in filter.qs %}
         <div class="row content">
           <div class="col-md-4">

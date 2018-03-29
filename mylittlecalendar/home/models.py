@@ -5,11 +5,15 @@ from django.db.models import Max
 from django import forms
 
 # Create your models here.
+
+# Model for the categories
 class Category(models.Model):
     name=models.CharField(max_length=100)
     def __str__(self):
         return self.name
 
+
+# Model for the events
 class Event(models.Model):
     name=models.CharField(max_length=100)
     description=models.CharField(max_length=500)
@@ -19,7 +23,6 @@ class Event(models.Model):
     fk_user=models.ForeignKey(User, on_delete=models.CASCADE)
     categories=models.ManyToManyField(Category, verbose_name= 'Category')
     image=models.ImageField(upload_to = 'images/events', default = 'images/events/default.jpg')
-
 
     def dates():
         end_date = Event.objects.all().aggregate(Max('date_end'))['date_end__max']
@@ -41,13 +44,13 @@ class Event(models.Model):
     def is_date_valid(self, date_test):
         return datetime.strptime(date_test, '%d.%m.%Y').date() <= self.date_end and datetime.strptime(date_test, '%d.%m.%Y').date() >= self.date_begin
 
-
+# Model for the region
 class Canton(models.Model):
     name=models.CharField(max_length=100)
     def __str__(self):
         return self.name
 
-
+# Model for the address
 class Address(models.Model):
     npa=models.CharField(max_length=20)
     locality=models.CharField(max_length=100)

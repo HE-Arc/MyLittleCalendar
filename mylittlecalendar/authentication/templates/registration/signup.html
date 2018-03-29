@@ -15,7 +15,7 @@
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
-    <!--{{ form.as_p }}-->
+    <!-- Form for a new user to sign up -->
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Sign up</button>
   </form>
