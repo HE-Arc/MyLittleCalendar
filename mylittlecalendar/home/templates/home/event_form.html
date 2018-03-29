@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+
 {# Load the tag library #}
 {% load bootstrap3 %}
 
@@ -10,14 +10,16 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
+{% load staticfiles %}
+
 {% block title %}Add event{% endblock %}
 
 {% block content %}
-<div class="container">
-  <form action="" method="post" enctype="multipart/form-data">
+
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-      {% bootstrap_form form %}
-      <input type="submit" value="Save" class="btn btn-primary" />
-  </form>
-</div>
+    {% bootstrap_form form %}
+    <input type="submit" value="Save" class="btn btn-primary" />
+</form>
+
 {% endblock %}

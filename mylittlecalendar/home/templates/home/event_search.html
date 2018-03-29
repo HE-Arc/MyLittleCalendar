@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load staticfiles %}
+
 {# Load the tag library #}
 {% load bootstrap3 %}
 
@@ -10,6 +10,8 @@
 
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
+
+{% load staticfiles %}
 
 {% block content %}
   <form method="get">
