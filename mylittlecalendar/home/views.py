@@ -17,6 +17,7 @@ class EventListView(generic.ListView):
     model = Event
 
     def get_context_data(self, **kwargs):
+        """Return a dictionnary with a date key containing all events present that day"""
         context = super().get_context_data(**kwargs)
         dates = Event.dates()
 
@@ -74,7 +75,8 @@ class EventCreateView(generic.CreateView):
 class EventFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     categories = django_filters.ModelMultipleChoiceFilter(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
-    cantons = django_filters.ModelMultipleChoiceFilter(queryset=Canton.objects.all(), widget=forms.CheckboxSelectMultiple)
+    cantons = django_filters.ModelMultipleChoiceFilter(queryset=Canton.objects.all(), widget=forms.CheckboxSelectMultiple,label="Canton" )
+
     class Meta:
         model = Event
         fields = ['name', 'date_begin', 'date_end', 'categories', 'cantons']
@@ -95,4 +97,11 @@ class EventUpdateView(generic.UpdateView):
 # View for deleting an event
 class EventDeleteView(generic.DeleteView):
     model = Event
+    success_url = reverse_lazy('my-events')
+
+
+# View to create a new address
+class AddressCreateView(generic.CreateView):
+    model = Address
+    fields = ['npa', 'locality','street', 'fk_canton']
     success_url = reverse_lazy('my-events')
