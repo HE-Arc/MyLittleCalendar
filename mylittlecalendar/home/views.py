@@ -75,12 +75,11 @@ class EventCreateView(generic.CreateView):
 class EventFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     categories = django_filters.ModelMultipleChoiceFilter(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
-    cantons = django_filters.ModelMultipleChoiceFilter(queryset=Canton.objects.all(), widget=forms.CheckboxSelectMultiple,label="Canton" )
+    cantons = django_filters.ModelMultipleChoiceFilter(name='fk_address__fk_canton', queryset=Canton.objects.all(), widget=forms.CheckboxSelectMultiple,label="Canton" )
 
     class Meta:
         model = Event
-        fields = ['name', 'date_begin', 'date_end', 'categories', 'cantons']
-        widgets={'date_begin': django_filters.DateFromToRangeFilter(attrs={'type':'date'}), 'date_end': django_filters.DateFromToRangeFilter(attrs={'type':'date'})}
+        fields = ['date_begin', 'date_end']
 
 def search(request):
     event_list = Event.objects.all()
