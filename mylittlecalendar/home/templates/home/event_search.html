@@ -23,14 +23,14 @@
 
   <!-- Shoe the results of the search by default all are shown -->
    {%  for event in filter.qs %}
-        <div class="row content">
-          <div class="col-md-4">
-              <img class="img-responsive rounded mb-3 mb-md-0" src="{{ event.image.url }}" alt="image">
-          </div>
-          <div class="col-md-8">
-            <h3>{{ event.name }} - {{event.date_begin}} until {{event.date_end}}</h3>
-            <p>{{ event.description }}</p>
-          </div>
-        </div>
+     <div class="row content">
+       <div class="col-md-4">
+           <img class="img-responsive rounded mb-3 mb-md-0" src="{{ event.image.url }}" alt="image">
+       </div>
+       <div class="col-md-8">
+         <h3>{{ event.name }} - {{event.date_begin}} until {{event.date_end}}</h3>
+         <p>{{ event.description }}</p>
+       </div>
+     </div>
   {% endfor %}
 {% endblock %}
