@@ -62,4 +62,4 @@ class Address(models.Model):
     fk_canton=models.ForeignKey('Canton', on_delete=models.CASCADE, verbose_name= 'Canton')
 
     def __str__(self):
-        return self.street
+        return '%s - %s %s %s' %(self.fk_canton, self.npa, self.locality, self.street)

@@ -28,6 +28,9 @@
                         Description
                     </th>
                     <th>
+                        Address
+                    </th>
+                    <th>
                         Actions
                     </th>
                 </tr>
@@ -39,6 +42,7 @@
                         <td>{{ event.date_begin|date:"d.m.Y" }}</td>
                         <td>{{ event.date_end|date:"d.m.Y" }}</td>
                         <td>{{ event.description }}</td>
+                        <td>{{ event.fk_address }}</td>
                         <td>
                             <a href="{% url 'event-edit' event.pk %}">
                                 <button type="button" class="btn btn-primary">Edit</button>
